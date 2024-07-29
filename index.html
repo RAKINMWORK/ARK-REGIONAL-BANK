@@ -34,7 +34,7 @@
         <div class="col-md-4 ">
             <div class="withdraw status">
             <h5>Withdraw</h5>
-            <h2>$00</h2>
+            <h2>$ <span id="currentWithdraw">00</span></h2>
         </div>
         </div>
         <div class="col-md-4 ">
@@ -62,7 +62,7 @@
             </div>
         </div>
       </div>
-        </div>
+  </div>
     <script>
         // login button even handler
         const LoginBtn = document.getElementById("Login");
@@ -88,12 +88,17 @@
         })
         const WithdrawBtn = document.getElementById("addWithdraw");
         WithdrawBtn.addEventListener("click", function(){
-           const WithdrawAmount = getInputNumber("WithdrawNumber");
-           console.log(WithdrawAmount);
+           const WithdrawNumber = getInputNumber("WithdrawAmount");
+
+         updateSpanText("currentWithdraw", WithdrawNumber);
+         updateSpanText("currentBalance", -1 * WithdrawNumber );
+
+
+         document.getElementById("WithdrawAmount").value = "";
         })
         function getInputNumber(id){
-            const Amount = document.getElementById(id).value;
-            const amountNumber = parseFloat(Amount);
+            const amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(amount);
             return amountNumber;
         }
     
